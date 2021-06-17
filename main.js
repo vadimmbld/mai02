@@ -71,7 +71,7 @@ function imageload(){
    
     images_loaded_count++;
     animate({
-        duration: 1000,
+        duration: 300,
 
         timing(timeFraction) {
           return Math.pow(timeFraction,1/5);
