@@ -35,10 +35,7 @@ body {
   height: 100vh;
   font-family: 'Satisfy', cursive;
   width: 100%;
-  background: -webkit-gradient(linear, left bottom, left top, from(black), color-stop(0%, white));
-  background: -webkit-linear-gradient(bottom, black 0%, white 0%);
-  background: -o-linear-gradient(bottom, black 0%, white 0%);
-  background: linear-gradient(0deg, black 0%, white 0%);
+  overflow: hidden;
   opacity: 1;
   visibility: visible;
   -webkit-transition: 300ms opacity , visibility 0ms 300ms;
@@ -46,6 +43,7 @@ body {
   transition: 300ms opacity , visibility 0ms 300ms; }
   #preloader .logo {
     font-family: 'Satisfy', cursive;
+    z-index: 1001;
     font-size: 50px;
     position: absolute;
     top: 50%;
@@ -56,3 +54,16 @@ body {
     margin: 0;
     color: white;
     mix-blend-mode: difference; }
+  #preloader .back-loader {
+    position: absolute;
+    height: 200%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(50%, black), color-stop(50%, white));
+    background: -webkit-linear-gradient(bottom, black 50%, white 50%);
+    background: -o-linear-gradient(bottom, black 50%, white 50%);
+    background: linear-gradient(0deg, black 50%, white 50%);
+    -webkit-transition: 300ms background;
+    -o-transition: 300ms background;
+    transition: 300ms background; }
