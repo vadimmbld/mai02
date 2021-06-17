@@ -57,40 +57,34 @@ imageBlock.addEventListener("mousemove",imageMove,true);
 let images = document.images,
     images_total_count = images.length,
     images_loaded_count = 0,
-    preloaderElem = document.getElementById('preloader');
-for(let i =0;i<images_total_count;i++){
-    
-    let image_clone = new Image();
-    image_clone.onload =  imageload;
-    image_clone.onerror =  imageload;
-    image_clone.src = images[i].src;
-    
-    
-}
-function imageload(){
-   
-    images_loaded_count++;
-    animate({
-        duration: 300,
+    preloaderElem = document.getElementById('preloader'),
+    backgroundPreloader = document.querySelector('.back-loader');
 
-        timing(timeFraction) {
-          return Math.pow(timeFraction,1/5);
-        },
-        draw(progress) {
-
-            preloaderElem.style.background = `linear-gradient(0deg, black ${images_loaded_count/images_total_count *100*progress}%, white ${images_loaded_count/images_total_count *100*progress}%)`;
-        }
-    });
-   
-    if(images_loaded_count>= images_total_count){
-        setTimeout(()=>{
-            imageFinish();
-        },400)
+    
+    for(let i =0;i<images_total_count;i++){
+        
+        let image_clone = new Image();
+        
+        image_clone.onload =  imageload;
+        
+        image_clone.onerror =   imageload;
+        image_clone.src = images[i].src;
         
         
         
     }
-    
+
+
+function imageload() {   
+        images_loaded_count++;
+       
+        
+        backgroundPreloader.style.background = `linear-gradient(0deg, black 50%, white 50%) 0 ${-images_loaded_count/images_total_count*(backgroundPreloader.clientHeight/2)}px`; 
+        if(images_loaded_count>= images_total_count){
+            setTimeout(()=>{
+                imageFinish();
+            },500)
+        }
 }
 function imageFinish(){
     preloaderElem.style.opacity = '0';
@@ -102,22 +96,7 @@ function imageFinish(){
     });
 
 }
-function animate({duration, draw, timing}) {
-
-    let start = performance.now();
-   
-    requestAnimationFrame(function anim(time) {
-      let timeFraction = (time - start) / duration;
-        
-      if (timeFraction > 1) timeFraction = 1;
-  
-      let progress = timing(timeFraction)
-  
-      draw(progress);
-  
-      if (timeFraction < 1) {
-        requestAnimationFrame(anim);
-      }
-  
-    });
+window.addEventListener('resize',resizeEvn);
+function resizeEvn(){
+    backgroundPreloader.style.background = `linear-gradient(0deg, black 50%, white 50%) 0 ${-images_loaded_count/images_total_count*(backgroundPreloader.clientHeight/2)}px`; 
 }
