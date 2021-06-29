@@ -34,7 +34,7 @@ function accelerometerUpdate(e) {
     
     let children = Array.prototype.slice.call(imageBlock.children);
     children.forEach(element => {
-        element.style.transform = `translate(${-50 - (Math.round(xPosition*10)/10) *element.dataset.distance*15}%,${-50-(Math.round(yPosition*10)/10)*element.dataset.distance*10}%)`;
+        element.style.transform = `translate(${-50 - (Math.round(xPosition*10)/10) *element.dataset.distance*13}%,${-50-(Math.round(yPosition*10)/10)*element.dataset.distance*8}%)`;
     });
     
     
@@ -44,7 +44,7 @@ function imageMove(e){
     let cordY = (e.clientY - this.offsetHeight/2)/this.offsetHeight*2;
     let children = Array.prototype.slice.call(this.children);
     children.forEach(element => {
-        element.style.transform = `translate(${-50-(Math.round(cordX*10)/10)*element.dataset.distance*2.5}%,${-50-(Math.round(cordY*10)/10)*element.dataset.distance*6}%)`;
+        element.style.transform = `translate(${-50-(Math.round(cordX*10)/10)*element.dataset.distance*2.2}%,${-50-(Math.round(cordY*10)/10)*element.dataset.distance*5}%)`;
     });
     
 }
